@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using HashLibrary;
 
 namespace AuthLog
 {
@@ -23,7 +24,7 @@ namespace AuthLog
             using (UserContext db = new UserContext())
             {
                 User user = new User(textBoxLog.Text,
-                this.GetHashString(textBoxPass.Text), textBoxEmail.Text, "User");
+                HashClass.GetHashString(textBoxPass.Text), textBoxEmail.Text, "User");
                 db.Users.Add(user);
                 db.SaveChanges();
             }
@@ -31,18 +32,7 @@ namespace AuthLog
             authorization.Show();
             this.Hide();
         }
-        private string GetHashString(string s)
-        {
-            byte[] bytes = Encoding.Unicode.GetBytes(s);
-            MD5CryptoServiceProvider CSP = new MD5CryptoServiceProvider();
-            byte[] byteHash = CSP.ComputeHash(bytes);
-            string hash = "";
-            foreach (byte b in byteHash)
-            {
-                hash += string.Format("{0:x2}", b);
-            }
-            return hash;
-        }
+
 
         private void Closed(object sender, FormClosedEventArgs e)
         {

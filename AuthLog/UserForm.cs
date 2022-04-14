@@ -12,14 +12,23 @@ namespace AuthLog
 {
     public partial class UserForm : Form
     {
-        public UserForm()
+        private Authorization authorization = null;
+        public UserForm(Authorization authorization)
         {
             InitializeComponent();
+            this.authorization = authorization;
         }
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            authorization.ShowDialog();
+            
         }
     }
 }

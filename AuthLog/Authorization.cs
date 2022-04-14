@@ -20,7 +20,7 @@ namespace AuthLog
                     this.GetHashString(textBoxPass.Text) == user.Password)
                     {
                         MessageBox.Show("Вход успешен!");
-                        UserForm userForm = new UserForm();
+                        UserForm userForm = new UserForm(this);
                         //userForm.label1.Text = user.Login;
                         this.Hide();
                         MessageBox.Show("Вы вошли в вашу учетную запись" + user.Login);
@@ -60,9 +60,10 @@ namespace AuthLog
 
         private void label5_Click(object sender, EventArgs e)
         {
-            RecoverAccount recoverAccount = new RecoverAccount();
-            recoverAccount.Show();
             this.Hide();
+            RecoverAccount recoverAccount = new RecoverAccount(this);
+            recoverAccount.Show();
+            
         }
     }
 }

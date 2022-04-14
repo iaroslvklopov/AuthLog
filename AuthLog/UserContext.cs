@@ -9,7 +9,16 @@ namespace AuthLog
 {
     public class UserContext : DbContext
     {
+        private static UserContext userContext = null;
         public UserContext() : base("DbConnection") { }
+        public static UserContext GetContext()
+        {
+            if(userContext == null)
+            {
+                userContext = new UserContext();
+            }
+            return userContext;
+        }
         public DbSet<User> Users { get; set; }
     }
 
