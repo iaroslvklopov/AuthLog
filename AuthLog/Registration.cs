@@ -23,16 +23,22 @@ namespace AuthLog
         {
             using (UserContext db = new UserContext())
             {
-                User user = new User(textBoxLog.Text,
-                HashClass.GetHashString(textBoxPass.Text), textBoxEmail.Text, "User");
-                db.Users.Add(user);
-                db.SaveChanges();
+                if (textBoxEmail.Text != "" && textBoxLog.Text != "" && textBoxPass.Text != "" )
+                {
+                    User user = new User(textBoxLog.Text, HashClass.GetHashString(textBoxPass.Text), textBoxEmail.Text, "User");
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Error!");
+                }
+                
             }
             Authorization authorization = new Authorization();
             authorization.Show();
             this.Hide();
         }
-
 
         private void Closed(object sender, FormClosedEventArgs e)
         {

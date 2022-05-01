@@ -46,7 +46,7 @@ namespace AuthLog
                             if (textBoxEmail.Text == user.Email)
                             {
                                 _user = user;
-                                m.Body = "<h1>Пароль: " + _code + "</h1>";
+                                m.Body = "<h1>Code: " + _code + "</h1>";
                             }
                         }
                     }

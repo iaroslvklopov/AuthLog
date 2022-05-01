@@ -23,7 +23,7 @@ namespace AuthLog
                         UserForm userForm = new UserForm(this);
                         //userForm.label1.Text = user.Login;
                         this.Hide();
-                        MessageBox.Show("Вы вошли в вашу учетную запись" + user.Login);
+                        MessageBox.Show("Вы вошли в вашу учетную запись: " + user.Login);
                         userForm.Show();                        
                         return;
                     }
